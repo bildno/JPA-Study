@@ -29,4 +29,12 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dept_id")
     private Department department;
+
+    
+    // 연관관계 편의 메서드 (양방향에서 연관 필드가 수정될 경우
+    //                       실제 테이블과의 데이터를 맞춰주기 위해 메서드 선언)
+    public void changeDepartment(Department department) {
+        this.department = department;
+        department.getEmployees().add(this);
+    }
 }
