@@ -11,4 +11,7 @@ public interface DepartmentRepository extends JpaRepository<Department, Long> {
     @Query("select d from Department d join fetch d.employees")
     List<Department> findAllIncludeEmployees();
 
+    
 }
+
+
