@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.List;
 
 @SpringBootTest
 @Transactional
@@ -83,6 +83,40 @@ class DepartmentRepositoryTest {
         newDept.getEmployees().forEach(System.out::println);
         System.out.println("\n\n\n\n");
 
+    }
+    @Test
+    @DisplayName("N+1 문제발생 예시")
+    void testNPlusOneEx() {
+        // given
+        List<Department> departments = departmentRepository.findAll();
+        // when
+        departments.forEach(dept -> {
+            System.out.println("======사원 리스트======");
+            List<Employee> empList = dept.getEmployees();
+            System.out.println(empList);
+
+            System.out.println("\n\n");
+
+        });
+        // then
+    }
+
+
+    @Test
+    @DisplayName("N+1 문제발생 해결")
+    void testNPlusOneSolution() {
+        // given
+        List<Department> departments = departmentRepository.findAllIncludeEmployees();
+        // when
+        departments.forEach(dept -> {
+            System.out.println("======사원 리스트======");
+            List<Employee> empList = dept.getEmployees();
+            System.out.println(empList);
+
+            System.out.println("\n\n");
+
+        });
+        // then
     }
 
 }
