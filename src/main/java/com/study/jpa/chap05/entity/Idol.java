@@ -3,10 +3,6 @@ package com.study.jpa.chap05.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-
-import jakarta.persistence.*;
-import lombok.*;
-
 @Entity
 @Table(name = "tbl_idol")
 @Setter
@@ -25,13 +21,16 @@ public class Idol {
 
     private int age;
 
+    private String gender;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
     private Group group;
 
-    public Idol(String idolName, int age, Group group) {
+    public Idol(String idolName, int age,String gender, Group group) {
         this.idolName = idolName;
         this.age = age;
+        this.gender =gender;
         if (group != null) {
             changeGroup(group);
         }

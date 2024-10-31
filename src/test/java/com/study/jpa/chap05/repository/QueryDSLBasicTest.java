@@ -1,13 +1,9 @@
 package com.study.jpa.chap05.repository;
 
-import com.querydsl.jpa.impl.JPAQuery;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.study.jpa.chap05.entity.Group;
 import com.study.jpa.chap05.entity.Idol;
-import com.study.jpa.chap05.entity.QIdol;
 import jakarta.persistence.EntityManager;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,10 +35,10 @@ class QueryDSLBasicTest {
         Group ive = new Group("아이브");
         groupRepository.save(leSserafim);
         groupRepository.save(ive);
-        Idol idol1 = new Idol("김채원", 24, leSserafim);
-        Idol idol2 = new Idol("사쿠라", 26, leSserafim);
-        Idol idol3 = new Idol("가을", 22, ive);
-        Idol idol4 = new Idol("리즈", 20, ive);
+        Idol idol1 = new Idol("김채원", 24, "female", leSserafim);
+        Idol idol2 = new Idol("사쿠라", 26, "female", leSserafim);
+        Idol idol3 = new Idol("가을", 22, "female", ive);
+        Idol idol4 = new Idol("리즈", 20, "female", ive);
         idolRepository.save(idol1);
         idolRepository.save(idol2);
         idolRepository.save(idol3);
